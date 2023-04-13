@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\HibasIsbnSzamException.cs" />
     <Compile Include="Konyv.cs" />
+    <Compile Include="Konyvespolc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

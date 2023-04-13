@@ -18,8 +18,9 @@ namespace Osztaly_Konyv
             string muCime = Console.ReadLine();
             int kiadasiEv = int.Parse(Console.ReadLine());
             string nyelv = Console.ReadLine();
-            bool enciklopedia = ;
+            bool enciklopedia = bool.Parse(Console.ReadLine());
             char eBook = char.Parse(Console.ReadLine());
+            string leltariSzam = Console.ReadLine();
             Console.WriteLine("Adj meg egy ISBN számot: ");
 
             try
@@ -28,7 +29,7 @@ namespace Osztaly_Konyv
             }
             catch (HibasIsbnSzamException e)
             {
-                hibak.Add($"Hibás ISBN szám: {e.HibasISBNSzam}\nHibás adat: {e.HibasAdat}");
+                hibak.Add($"Hibás ISBN szám: {e.HibasISBNSzam}\nHibás adat: {e.HibasAdat}\nHibás szerző: {e.HibasSzerzo}\nHibás cím: {e.HibasCim}\nHibás kiadási év: {e.HibasKiadasiEv}\nHibás nyelv: {e.HibasNyelv}\nHibás enciklopédia: {e.HibasEnciklopedia}\nHibás eBook: {e.HibaseBook}\nHibás leltári szám: {e.HibasLeltariSzam}");
                 Console.WriteLine(e.Message);
             }
 
@@ -41,12 +42,38 @@ namespace Osztaly_Konyv
             //enciklopedia - bool
             //eBook - i/n (char)
 
-            for (int i = 0; i < 100; i++)
+            /*for (int i = 0; i < 100; i++)
             {
-                Konyv egyKonyv = new Konyv(11111111111, "a", "ab", 2002, "m", false, 'n');
+                Konyv egyKonyv = new Konyv("11111111111", "a", "ab", 2002, "magyar", false, 'n');
                 Console.WriteLine(i);
             }
-            int szorzo=(int)Math.Ceiling()
+            int szorzo=(int)Math.Ceiling()*/
+
+            KonyvesPolc konyvesPolc1 = new KonyvesPolc();
+
+            try
+            {
+                Konyv konyv1 = new Konyv("0306406152", "Szerző 1", "Cím 1", 2023, "Magyar", true, 'n', "12345678901");
+                Konyv konyv2 = new Konyv("0306406152", "Szerző 1", "Cím 1", 2018, "Magyar", false, 'n', "24397586410");
+                konyvesPolc1.konyvHozzaAdasa(konyv1);
+                konyvesPolc1.konyvHozzaAdasa(konyv2);
+            }
+            catch (HibasIsbnSzamException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            int konyvszam = konyvesPolc1.konyvekSzama;
+            Console.WriteLine(konyvszam);
+            Console.WriteLine(konyvesPolc1.konyvekSzama);
+            Console.WriteLine(konyvesPolc1.konyvekSzamaFuggveny());
+
+
+
 
             Console.ReadKey();
         }
